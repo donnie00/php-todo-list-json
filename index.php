@@ -1,7 +1,14 @@
 <?php
 
-include __DIR__ . "/api/readTasksArray.php";
+// $taskText = $_GET['taskText'];
 
+$tasks = file_get_contents('./tasksList.json');
+
+$tasks = json_decode($tasks, true);
+
+// echo '<pre>';
+
+// echo '<?pre>';
 ?>
 
 <!DOCTYPE html>
@@ -24,34 +31,33 @@ include __DIR__ . "/api/readTasksArray.php";
 
       <div class="row justify-content-center">
          <div class="col-4">
-            <h1 class="my-3">To-do Php</h1>
+            <h1 class="my-3 display-3">To-do Php</h1>
+            <!-- <?php if (count($tasks) === 0) : ?>
+
+               <h2 class="text-muted">Nessun elemento ancora aggiunto, scrivi qualcosa qui sotto per aggiungerlo alla lista.</h2>
+
+            <?php else : ?>
+               <ul class="list-group mb-3">
+                  <?php foreach ($tasks as $task) : ?>
+                     <li class="list-group-item d-flex align-items-center justify-content-between">
+                        <span><?php echo $task['task'] ?></span>
+                        <button class="btn btn-danger">&cross;</button>
+                     </li>
+                  <?php endforeach ?>
+               </ul>
+            <?php endif ?> -->
+
             <ul class="list-group mb-3">
-               <li class="list-group-item d-flex align-items-center justify-content-between">
-                  <span>HTML</span>
-                  <button class="btn btn-danger">&cross;</button>
-               </li>
-               <li class="list-group-item d-flex align-items-center justify-content-between">
-                  <span>HTML</span>
-                  <button class="btn btn-danger">&cross;</button>
-               </li>
-               <li class="list-group-item d-flex align-items-center justify-content-between">
-                  <span>HTML</span>
-                  <button class="btn btn-danger">&cross;</button>
-               </li>
-               <li class="list-group-item d-flex align-items-center justify-content-between">
-                  <span>HTML</span>
-                  <button class="btn btn-danger">&cross;</button>
-               </li>
-               <li class="list-group-item d-flex align-items-center justify-content-between">
-                  <span>HTML</span>
+               <li v-for="(task, i) in tasks" :key="i" class="list-group-item d-flex align-items-center justify-content-between">
+                  <span>{{task.taskText}}</span>
                   <button class="btn btn-danger">&cross;</button>
                </li>
             </ul>
 
-            <form action="">
+            <form action="" method="POST">
                <div class="input-group mb-3">
                   <input class="form-control" type="text" name="taskText">
-                  <button class="btn btn-outline-warning">Add task</button>
+                  <button class="btn btn-outline-warning" @click.prevent="">Add task</button>
                </div>
             </form>
          </div>

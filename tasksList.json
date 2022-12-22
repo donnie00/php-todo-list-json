@@ -1,18 +1,18 @@
 [
 	{
-		"taks": "testo task",
+		"taskText": "bro1",
 		"done": false
 	},
 	{
-		"taks": "testo task",
+		"taskText": "2",
 		"done": false
 	},
 	{
-		"taks": "testo task",
+		"taskText": "3",
 		"done": false
 	},
 	{
-		"taks": "testo task",
+		"taskText": "4",
 		"done": false
 	}
 ]

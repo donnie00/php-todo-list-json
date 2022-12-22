@@ -1,7 +1,9 @@
 <?php
 
-$tasksJson = file_get_contents('../tasksList.json');
+$tasks = file_get_contents('../tasksList.json');
 
-$tasks = json_decode($tasksJson, true);
+// $tasks = json_decode($tasks, true);
 
-var_dump($tasks);
+header("Content-Type: application/json");
+
+echo $tasks;
