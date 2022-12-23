@@ -10,6 +10,8 @@
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+   <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="text-bg-dark">
@@ -20,8 +22,8 @@
          <div class="col-4">
             <h1 class="my-3 display-3">To-do Php</h1>
             <ul v-if="tasks.length > 0" class="list-group mb-3">
-               <li v-for="(task, i) in tasks" :key="i" class="list-group-item d-flex align-items-center justify-content-between">
-                  <span>{{task.text}}</span>
+               <li v-for="(task, i) in tasks" :key="i" class="list-group-item d-flex align-items-center justify-content-between" :class="task.done ? 'taskDone' : ''">
+                  <span @click=" task.done=!(task.done)">{{task.text}}</span>
                   <button class="btn btn-danger" @click="onTaskDelete(task.id)">&cross;</button>
                </li>
             </ul>

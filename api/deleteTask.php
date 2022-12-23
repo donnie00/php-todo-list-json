@@ -1,8 +1,7 @@
 <?php
 
-if (empty($_POST['id'])) {
+if (empty($_POST['taskId'])) {
    http_response_code(400);
-
    exit('Id non valido!');
 }
 
