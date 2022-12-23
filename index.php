@@ -1,16 +1,3 @@
-<?php
-
-// $taskText = $_GET['taskText'];
-
-$tasks = file_get_contents('./tasksList.json');
-
-$tasks = json_decode($tasks, true);
-
-// echo '<pre>';
-
-// echo '<?pre>';
-?>
-
 <!DOCTYPE html>
 <html lang="it">
 
@@ -32,32 +19,21 @@ $tasks = json_decode($tasks, true);
       <div class="row justify-content-center">
          <div class="col-4">
             <h1 class="my-3 display-3">To-do Php</h1>
-            <!-- <?php if (count($tasks) === 0) : ?>
-
-               <h2 class="text-muted">Nessun elemento ancora aggiunto, scrivi qualcosa qui sotto per aggiungerlo alla lista.</h2>
-
-            <?php else : ?>
-               <ul class="list-group mb-3">
-                  <?php foreach ($tasks as $task) : ?>
-                     <li class="list-group-item d-flex align-items-center justify-content-between">
-                        <span><?php echo $task['task'] ?></span>
-                        <button class="btn btn-danger">&cross;</button>
-                     </li>
-                  <?php endforeach ?>
-               </ul>
-            <?php endif ?> -->
-
-            <ul class="list-group mb-3">
+            <ul v-if="tasks.length > 0" class="list-group mb-3">
                <li v-for="(task, i) in tasks" :key="i" class="list-group-item d-flex align-items-center justify-content-between">
-                  <span>{{task.taskText}}</span>
-                  <button class="btn btn-danger">&cross;</button>
+                  <span>{{task.text}}</span>
+                  <button class="btn btn-danger" @click="onTaskDelete(task.id)">&cross;</button>
                </li>
             </ul>
 
-            <form action="" method="POST">
-               <div class="input-group mb-3">
-                  <input class="form-control" type="text" name="taskText">
-                  <button class="btn btn-outline-warning" @click.prevent="">Add task</button>
+            <div v-else class="card p-3">
+               <h3 class="text-dark">Nessuna task da visualizzare, prova ad aggiungerne una scrivendola qui sotto!</h3>
+            </div>
+
+            <form @submit.prevent='onTaskAdd'>
+               <div class="input-group my-3">
+                  <input class="form-control" type="text" v-model="newTask.text">
+                  <button class="btn btn-outline-warning">Add task</button>
                </div>
             </form>
          </div>

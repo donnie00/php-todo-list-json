@@ -1,18 +1,7 @@
 [
-	{
-		"taskText": "bro1",
-		"done": false
-	},
-	{
-		"taskText": "2",
-		"done": false
-	},
-	{
-		"taskText": "3",
-		"done": false
-	},
-	{
-		"taskText": "4",
-		"done": false
-	}
+    {
+        "text": "Bro",
+        "done": false,
+        "id": "63a5e81b55e77"
+    }
 ]
